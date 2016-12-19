@@ -1,9 +1,14 @@
-var runnerScript = require("../sendReminders.js").sendReminders;
+var twilio = require('twilio');
+var courtbot = require('courtbot-engine');
+var Localize = require('localize');
+require("courtbot-engine-pg");
+require('./config');
+require("../messageSource");
 
-runnerScript().then(function(success) {
-  console.log(success);
-  process.exit(0);
-}, function(err) {
-  console.log(err);
-  process.exit(1);
+courtbot.sendReminders({
+  dbUrl: process.env.DATABASE_URL,
+  caseData: require("./data-sources/tulsa-oklahoma"),
+  twilioAccount: process.env.TWILIO_ACCOUNT_SID,
+  twilioToken: process.env.TWILIO_AUTH_TOKEN,
+  twilioPhone: process.env.TWILIO_PHONE_NUMBER
 });
