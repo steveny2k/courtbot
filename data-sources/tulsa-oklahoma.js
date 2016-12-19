@@ -6,10 +6,10 @@ var client = new Client();
 module.exports.getCaseParties = function(casenumber) {
   return new Promise(function(resolve, reject) {
     client.get("http://data.thekinfamily.com/oscn/case/tulsa/" + casenumber, function(data, res) {
-      if(!data.parties) {
+      if(!data.defendants) {
         reject("no parties");
       }
-      resolve(data.parties);
+      resolve(data.defendants);
     });
   });
 }
