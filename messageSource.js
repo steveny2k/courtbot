@@ -3,6 +3,8 @@ var Localize = require('localize');
 require("courtbot-engine-pg");
 require('./config');
 
+var localize = Localize("./strings");
+
 courtbot.setMessageSource(() => ({
   askReminder: function(phone, registration, party) {
     return localize.translate(localize.strings.confirmRegistrationMessage, party.name);
