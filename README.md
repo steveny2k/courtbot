@@ -25,14 +25,6 @@ Install node dependencies
 npm install
 ```
 
-Then, to create the tables and load in initial data:
-
-```console
-node utils/createQueuedTable.js
-node utils/createRemindersTable.js
-node runners/load.js
-```
-
 To start the web service:
 
 ```console
@@ -51,43 +43,21 @@ heroku config:set COOKIE_SECRET=<random string>
 heroku config:set TWILIO_ACCOUNT=<twilio account>
 heroku config:set TWILIO_AUTH_TOKEN=<twilio auth token>
 heroku config:set TWILIO_PHONE_NUMBER=<twilio phone number>
-heroku config:set PHONE_ENCRYPTION_KEY=<random string>
-heroku config:set DATA_URL=<court records csv location>
 heroku config:set COURT_PUBLIC_URL=<where to send people for more info>
 heroku config:set QUEUE_TTL_DAYS=<# days to keep a citation on the search queue>
-heroku config:set TIMEZONE=<standard timezone ex. America/Anchorage>
-heroku config:set TIMEZONE_OFFSET=<Subtraction from GMT -08:00>
+heroku config:set COURTBOT_TITLE=<name for courtbot>
+heroku config:set REMINDER_DAYS_OUT=<number of days out to remind users (typically 1)>
 git push heroku master
-heroku run node utils/createQueuedTable.js
-heroku run node utils/createRemindersTable.js
-heroku run node runners/load.js
 heroku open
 ```
 
 Finally, you'll want to setup scheduler to run the various tasks each day. Here's the recommended config:
 
-![scheduler settings](https://cloud.githubusercontent.com/assets/1435836/4785655/2893dd9a-5d83-11e4-9618-d743bee27d2f.png)
+* node runners/sendQueued.js (daily)
+* node runners/sendReminders.js (daily)
 
-## Scheduler Changes
-* node runners/sendQueued.js
-* node runners/sendReminders.js
-
-## Running Tests
-
-Initialize the test database:
-
-* node test_utils/reset
-
-Set up your environment variables:
-
-* cp .sample.env .env
--OR- set your own
+## Running Unit Tests
 
 The run the tests:
 
 npm test
-
-
-# Customizing
-
-## Case data
