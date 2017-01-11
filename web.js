@@ -21,7 +21,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-app.use(cookieSession());
+app.use(cookieSession({
+  keys: [
+    process.env.COOKIE_SECRET
+  ]
+}));
 
 
 // Serve testing page on which you can impersonate Twilio
