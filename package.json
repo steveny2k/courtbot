@@ -20,7 +20,7 @@
     "chai": "^2.1.2",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-alpha.2",
-    "courtbot-engine": "^1.0.13-4",
+    "courtbot-engine": "^1.0.13-5",
     "courtbot-engine-pg": "^1.0.11-0",
     "csv-parse": "0.0.1",
     "db-migrate": "^0.10.0-beta.20",
