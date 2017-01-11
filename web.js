@@ -1,5 +1,9 @@
 var twilio = require('twilio');
 var express = require('express');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
+
 var logfmt = require('logfmt');
 var courtbot = require('courtbot-engine');
 var Localize = require('localize');
@@ -13,10 +17,11 @@ var app = express();
 
 // Express Middleware
 app.use(logfmt.requestLogger());
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.cookieParser(process.env.COOKIE_SECRET));
-app.use(express.cookieSession());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieSession());
 
 
 // Serve testing page on which you can impersonate Twilio
