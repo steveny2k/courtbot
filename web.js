@@ -3,6 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
+var log4js = require("log4js");
 
 var logfmt = require('logfmt');
 var courtbot = require('courtbot-engine');
@@ -10,6 +11,33 @@ var Localize = require('localize');
 require("courtbot-engine-pg");
 require('./config');
 require("./messageSource");
+
+var appenders = [
+  {
+    "type": "logLevelFilter",
+    "level": "INFO",
+    "appender": {
+      "type": "console"
+    }
+  }
+]
+
+if(process.env.LOGENTRIES_TOKEN) {
+  // log4js.loadAppender("logentries-log4js-appender");
+  // log4js.addAppender(log4js.appenders["logentries-log4js-appender"]({
+  //   token: process.env.LOGENTRIES_TOKEN
+  // }));
+
+  appenders.push({
+    "type": "logentries-log4js-appender",
+    options: {
+      "token": process.env.LOGENTRIES_TOKEN
+    }
+  })
+}
+log4js.configure({appenders});
+
+const log = log4js.getLogger("courtbot");
 
 var localize = Localize("./strings");
 
@@ -47,21 +75,25 @@ app.get('/proxy.html', function(req, res) {
 });
 
 app.get('/', function(req, res) {
+  log.info("Homepage request", req);
   res.status(200).send('Hello, I am Courtbot. I have a heart of justice and a knowledge of court cases.');
 });
 
-courtbot.addRoutes(app, {
+const courtbotConfig = {
   path: "/sms",
   dbUrl: process.env.DATABASE_URL,
   caseData: require("./data-sources/tulsa-oklahoma")
-});
+};
+
+log.info("Courtbot config", courtbotConfig);
+courtbot.addRoutes(app, courtbotConfig);
 
 // Error handling Middleware
 app.use(function (err, req, res, next) {
   if (!res.headersSent) {
     // during development, return the trace to the client for
     // helpfulness
-    console.log("Error: " + err.message);
+    log.error("Error: " + err.message, err);
     if (app.settings.env !== 'production') {
       return res.status(500).send(err.stack)
     }
@@ -72,7 +104,7 @@ app.use(function (err, req, res, next) {
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {
-  console.log("Listening on " + port);
+  log.info("Listening on " + port);
 });
 
 module.exports = app;
