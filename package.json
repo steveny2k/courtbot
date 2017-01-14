@@ -8,7 +8,7 @@
     "start": "node web.js",
     "loaddata": "node runners/load.js"
   },
-  "author": "Sam Hashemi",
+  "author": "Philip Kin",
   "license": "MIT",
   "engines": {
     "node": "6.9.1"
