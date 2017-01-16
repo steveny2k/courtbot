@@ -12,6 +12,15 @@ courtbot.setMessageSource(() => ({
   noCaseMessage: function(caseNumber) {
     return localize.translate(localize.strings.noCase, caseNumber);
   },
+  askPartyAgain: function(text, phone, registration, parties){
+    var message = localize.translate(localize.strings.partyQuestionErrorMessage, text) + "\n";
+    var n = 1;
+    for(var i in parties) {
+      var num = n++;
+      message += localize.translate(localize.strings.partyQuestionPartyLineMessage, num, parties[i].name);
+    }
+    return message;
+  },
   askParty: function(phone, registration, parties) {
     var message = localize.translate(localize.strings.partyQuestionMessage) + "\n";
     var n = 1;
