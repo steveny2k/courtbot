@@ -9,6 +9,7 @@ var logfmt = require('logfmt');
 var courtbot = require('courtbot-engine');
 var Localize = require('localize');
 require("courtbot-engine-pg");
+require("courtbot-engine-data-oscn")("tulsa");
 require('./config');
 require("./messageSource");
 
@@ -81,8 +82,7 @@ app.get('/', function(req, res) {
 
 const courtbotConfig = {
   path: "/sms",
-  dbUrl: process.env.DATABASE_URL,
-  caseData: require("./data-sources/tulsa-oklahoma")
+  dbUrl: process.env.DATABASE_URL
 };
 
 log.info("Courtbot config", courtbotConfig);
