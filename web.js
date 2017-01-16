@@ -9,7 +9,7 @@ var logfmt = require('logfmt');
 var courtbot = require('courtbot-engine');
 var Localize = require('localize');
 require("courtbot-engine-pg");
-require("courtbot-engine-data-oscn")("tulsa");
+require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.com");
 require('./config');
 require("./messageSource");
 
