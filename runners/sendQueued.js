@@ -2,7 +2,7 @@ var twilio = require('twilio');
 var courtbot = require('courtbot-engine');
 var Localize = require('localize');
 require("courtbot-engine-pg");
-require("courtbot-engine-data-oscn");
+require("courtbot-engine-data-oscn")("tulsa");
 require('../config');
 require("../messageSource");
 

@@ -9,7 +9,7 @@ var logfmt = require('logfmt');
 var courtbot = require('courtbot-engine');
 var Localize = require('localize');
 require("courtbot-engine-pg");
-require("courtbot-engine-data-oscn");
+require("courtbot-engine-data-oscn")("tulsa");
 require('./config');
 require("./messageSource");
 
