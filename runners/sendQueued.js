@@ -2,7 +2,7 @@ var twilio = require('twilio');
 var courtbot = require('courtbot-engine');
 var Localize = require('localize');
 require("courtbot-engine-pg");
-require('./config');
+require('../config');
 require("../messageSource");
 
 courtbot.sendReminders({
