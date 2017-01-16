@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/codeforanchorage/courtbot.svg?branch=master)](https://travis-ci.org/codeforanchorage/courtbot)
+#Courtbot (Tulsa Edition) [![Build Status](https://travis-ci.org/codefortulsa/courtbot.svg?branch=master)](https://travis-ci.org/codefortulsa/courtbot)
 
 ## NOTES
 
