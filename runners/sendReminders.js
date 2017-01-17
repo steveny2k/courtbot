@@ -6,7 +6,7 @@ require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.c
 require('../config');
 require("../messageSource");
 
-courtbot.sendReminders({
+courtbot.sendDueReminders({
   dbUrl: process.env.DATABASE_URL,
   twilioAccount: process.env.TWILIO_ACCOUNT_SID,
   twilioToken: process.env.TWILIO_AUTH_TOKEN,
