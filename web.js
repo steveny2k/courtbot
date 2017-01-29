@@ -8,6 +8,7 @@ var log4js = require("log4js");
 var logfmt = require('logfmt');
 var courtbot = require('courtbot-engine');
 var Localize = require('localize');
+var connections = require('./connectionTypes');
 require("courtbot-engine-pg");
 require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.com");
 require('./config');
@@ -85,6 +86,8 @@ const courtbotConfig = {
   ConsoleREPL: !!process.env.USE_CONSOLE,
   reminderDaysOut: process.env.REMINDER_DAYS_OUT
 };
+
+connections.setup(courtbotConfig);
 
 log.info("Courtbot config", courtbotConfig);
 app.use("/", courtbot.routes(courtbotConfig));
