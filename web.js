@@ -16,7 +16,7 @@ require("./messageSource");
 var appenders = [
   {
     "type": "logLevelFilter",
-    "level": "INFO",
+    "level": "DEBUG",
     "appender": {
       "type": "console"
     }
@@ -82,7 +82,9 @@ app.get('/', function(req, res) {
 
 const courtbotConfig = {
   path: "/sms",
-  dbUrl: process.env.DATABASE_URL
+  dbUrl: process.env.DATABASE_URL,
+  ConsoleREPL: true,
+  reminderDaysOut: 18
 };
 
 log.info("Courtbot config", courtbotConfig);
