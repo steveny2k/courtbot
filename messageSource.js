@@ -6,6 +6,9 @@ require('./config');
 var localize = Localize("./strings");
 
 courtbot.setMessageSource(() => ({
+  reminder: function(reg, evt) {
+    return localize.translate(localize.strings.reminder, evt.date, evt.description, process.env.COURT_PUBLIC_URL, process.env.COURTBOT_TITLE);
+  },
   askReminder: function(phone, registration, party) {
     return localize.translate(localize.strings.confirmRegistrationMessage, party.name);
   },
