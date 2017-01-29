@@ -8,6 +8,7 @@ var log4js = require("log4js");
 var logfmt = require('logfmt');
 var courtbot = require('courtbot-engine');
 var Localize = require('localize');
+var connections = require('./connectionTypes');
 require("courtbot-engine-pg");
 require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.com");
 require("courtbot-engine-data-courtbook")("http://agile-tundra-30598.herokuapp.com/rest");
@@ -17,7 +18,7 @@ require("./messageSource");
 var appenders = [
   {
     "type": "logLevelFilter",
-    "level": "INFO",
+    "level": "DEBUG",
     "appender": {
       "type": "console"
     }
@@ -82,12 +83,15 @@ app.get('/', function(req, res) {
 });
 
 const courtbotConfig = {
-  path: "/sms",
-  dbUrl: process.env.DATABASE_URL
+  dbUrl: process.env.DATABASE_URL,
+  ConsoleREPL: !!process.env.USE_CONSOLE,
+  reminderDaysOut: process.env.REMINDER_DAYS_OUT
 };
 
+connections.setup(courtbotConfig);
+
 log.info("Courtbot config", courtbotConfig);
-courtbot.addRoutes(app, courtbotConfig);
+app.use("/", courtbot.routes(courtbotConfig));
 
 // Error handling Middleware
 app.use(function (err, req, res, next) {
