@@ -81,14 +81,13 @@ app.get('/', function(req, res) {
 });
 
 const courtbotConfig = {
-  path: "/sms",
   dbUrl: process.env.DATABASE_URL,
-  ConsoleREPL: true,
-  reminderDaysOut: 18
+  ConsoleREPL: !!process.env.USE_CONSOLE,
+  reminderDaysOut: process.env.REMINDER_DAYS_OUT
 };
 
 log.info("Courtbot config", courtbotConfig);
-courtbot.addRoutes(app, courtbotConfig);
+app.use("/", courtbot.routes(courtbotConfig));
 
 // Error handling Middleware
 app.use(function (err, req, res, next) {
