@@ -11,6 +11,7 @@ var Localize = require('localize');
 var connections = require('./connectionTypes');
 require("courtbot-engine-pg");
 require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.com");
+require("courtbot-engine-data-courtbook")("http://agile-tundra-30598.herokuapp.com/rest");
 require('./config');
 require("./messageSource");
 
