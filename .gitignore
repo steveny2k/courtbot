@@ -5,3 +5,5 @@ utils/tmp/*
 !utils/tmp/.gitkeep
 TODO
 .idea
+npm-debug.log*
+
