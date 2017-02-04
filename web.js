@@ -48,6 +48,7 @@ var app = express();
 
 // Express Middleware
 app.use(logfmt.requestLogger());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
