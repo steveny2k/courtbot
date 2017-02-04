@@ -6,6 +6,9 @@ require('./config');
 var localize = Localize("./strings");
 
 courtbot.setMessageSource(() => ({
+  remote: function(user, case_number, name) {
+    return localize.translate(localize.string.remote, user, case_number, name);
+  },
   reminder: function(reg, evt) {
     return localize.translate(localize.strings.reminder, evt.date, evt.description, process.env.COURT_PUBLIC_URL, process.env.COURTBOT_TITLE);
   },

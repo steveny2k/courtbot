@@ -1,0 +1,2 @@
+You've been signed up for court case reminders by $[1] for court case $[2] for party $[3].
+Would you like a courtesy reminder the day before any events? (reply YES or NO)
