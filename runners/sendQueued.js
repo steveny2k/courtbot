@@ -1,7 +1,7 @@
 var twilio = require('twilio');
 var courtbot = require('courtbot-engine');
 var Localize = require('localize');
-var connections = require('./connectionTypes');
+var connections = require('../connectionTypes');
 require("courtbot-engine-pg");
 require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.com");
 require('../config');
