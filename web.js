@@ -86,7 +86,10 @@ app.get('/', function(req, res) {
 const courtbotConfig = {
   dbUrl: process.env.DATABASE_URL,
   ConsoleREPL: !!process.env.USE_CONSOLE,
-  reminderDaysOut: process.env.REMINDER_DAYS_OUT
+  reminderDaysOut: process.env.REMINDER_DAYS_OUT,
+  twilioAccount: process.env.TWILIO_ACCOUNT_SID,
+  twilioToken: process.env.TWILIO_AUTH_TOKEN,
+  twilioPhone: process.env.TWILIO_PHONE_NUMBER
 };
 
 connections.setup(courtbotConfig);
