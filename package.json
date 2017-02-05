@@ -19,7 +19,7 @@
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-alpha.2",
-    "courtbot-engine": "^1.4.11",
+    "courtbot-engine": "^1.4.12",
     "courtbot-engine-data-courtbook": "^1.0.4",
     "courtbot-engine-data-oscn": "^1.2.2",
     "courtbot-engine-pg": "^1.3.7",
