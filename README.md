@@ -47,6 +47,7 @@ heroku config:set COURT_PUBLIC_URL=<where to send people for more info>
 heroku config:set QUEUE_TTL_DAYS=<# days to keep a citation on the search queue>
 heroku config:set COURTBOT_TITLE=<name for courtbot>
 heroku config:set REMINDER_DAYS_OUT=<number of days out to remind users (typically 1)>
+heroku config:set API_TOKENS=["key1", "key2"]
 git push heroku master
 heroku open
 ```
