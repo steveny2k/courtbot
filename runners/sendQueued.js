@@ -8,7 +8,7 @@ require('../config');
 require("../messageSource");
 var options = {
   dbUrl: process.env.DATABASE_URL,
-  twilioAccount: process.env.TWILIO_ACCOUNT_SID,
+  twilioAccount: process.env.TWILIO_ACCOUNT,
   twilioToken: process.env.TWILIO_AUTH_TOKEN,
   twilioPhone: process.env.TWILIO_PHONE_NUMBER
 }
