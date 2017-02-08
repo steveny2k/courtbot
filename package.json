@@ -7,7 +7,8 @@
     "test": "nyc mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "start": "node web.js",
-    "loaddata": "node runners/load.js"
+    "loaddata": "node runners/load.js",
+    "lint": "eslint src/ test/ --ext .js, .jsx --ignore-path .eslintignore"
   },
   "author": "Philip Kin",
   "license": "MIT",
@@ -38,6 +39,11 @@
     "logfmt": "~0.23.0",
     "moment": "~2.5.1",
     "moment-timezone": "^0.5.5",
+    "eslint": "~3.4.0",
+    "eslint-config-recommended": "^1.5.0",
+    "eslint-loader": "~1.5.0",
+    "eslint-plugin-chai-expect": "^1.0.1",
+    "eslint-plugin-react": "^6.2.0",
     "nock": "^1.2.1",
     "node-rest-client": "^2.0.1",
     "pg": "^6.1.0",
