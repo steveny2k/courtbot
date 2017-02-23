@@ -9,6 +9,8 @@ var logfmt = require('logfmt');
 var courtbot = require('courtbot-engine');
 var Localize = require('localize');
 var connections = require('./connectionTypes');
+
+require('./config');
 require("courtbot-engine-pg");
 require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.com");
 require("courtbot-engine-data-courtbook")({
@@ -20,13 +22,12 @@ require("courtbot-engine-data-courtbook")({
         clientSecret: process.env.COURTBOOK_OAUTH_SECRET
     }
 });
-require('./config');
 require("./messageSource");
 
 var appenders = [
   {
     "type": "logLevelFilter",
-    "level": "DEBUG",
+    "level": "TRACE",
     "appender": {
       "type": "console"
     }

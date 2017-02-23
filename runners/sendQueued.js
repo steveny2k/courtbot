@@ -5,6 +5,15 @@ var connections = require('../connectionTypes');
 require("courtbot-engine-pg");
 require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.com");
 require('../config');
+require("courtbot-engine-data-courtbook")({
+    courtbookUrl: process.env.COURTBOOK_URL,
+    oauthConfig: {
+        tokenUrl: process.env.COURTBOOK_OAUTH_TOKEN_URL,
+        audience: process.env.COURTBOOK_OAUTH_AUDIENCE,
+        clientId: process.env.COURTBOOK_OAUTH_CLIENT_ID,
+        clientSecret: process.env.COURTBOOK_OAUTH_SECRET
+    }
+});
 require("../messageSource");
 var options = {
   dbUrl: process.env.DATABASE_URL,
