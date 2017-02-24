@@ -1,0 +1,26 @@
+#!/bin/bash
+mv .env .env.old
+echo "COOKIE_SECRET=insert-random-string" >> .env
+echo "TWILIO_ACCOUNT_SID=add-twilio-sid-here" >> .env
+echo "TWILIO_AUTH_TOKEN=add-auth-token-here" >> .env
+echo "TWILIO_PHONE_NUMBER=+15555555555" >> .env
+echo "DATABASE_URL=postgres://postgres:$PGPASSWORD@localhost:5432/courtbotat" >> .env
+echo "QUEUE_TTL_DAYS=10" >> .env
+echo "COURTBOT_TITLE=Tulsa Courtbot" >> .env
+echo "REMINDER_DAYS_OUT=1" >> .env
+echo "COURT_PUBLIC_URL=http://www.oscn.net/v4/" >> .env
+echo "COURTBOOK_URL=https://courtbook.herokuapp.com" >> .env
+echo "COURTBOOK_OAUTH_SECRET=oauth_secret" >> .env
+echo "COURTBOOK_OAUTH_CLIENT_ID=oauth_client_id" >> .env
+echo "COURTBOOK_OAUTH_AUDIENCE=oauth_audience" >> .env
+echo "COURTBOOK_OAUTH_TOKEN_URL=oauth_token_url" >> .env
+echo "API_TOKENS='["TOKEN1", "TOKEN2"]'" >> .env
+cat .env
+psql -c "CREATE DATABASE courtbotat" -h localhost -U postgres
+node web.js &
+sleep 5
+./node_modules/.bin/cucumber-js
+pkill node
+rm .env
+PGPASSWORD=postgres psql -c "DROP DATABASE courtbotat" -h localhost -U postgres
+mv .env.old .env
