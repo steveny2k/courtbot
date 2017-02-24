@@ -13,7 +13,6 @@ require("courtbot-engine-data-courtbook")({
         clientSecret: process.env.COURTBOOK_OAUTH_SECRET
     }
 });
-require("../messageSource");
 var options = {
   dbUrl: process.env.DATABASE_URL,
   twilioAccount: process.env.TWILIO_ACCOUNT,

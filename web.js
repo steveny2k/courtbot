@@ -22,7 +22,6 @@ require("courtbot-engine-data-courtbook")({
         clientSecret: process.env.COURTBOOK_OAUTH_SECRET
     }
 });
-require("./messageSource");
 
 var appenders = [
   {
