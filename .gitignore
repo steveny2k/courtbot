@@ -6,4 +6,4 @@ utils/tmp/*
 TODO
 .idea
 npm-debug.log*
-
+.nyc_output/*

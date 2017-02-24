@@ -32,7 +32,6 @@
     "express": "~4.14.0",
     "knex": "^0.12.2",
     "le_node": "^1.7.0",
-    "localize": "^0.4.7",
     "log4js": "^1.1.0",
     "logentries-log4js-appender": "0.0.3",
     "logfmt": "~0.23.0",

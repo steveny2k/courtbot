@@ -7,7 +7,6 @@ var log4js = require("log4js");
 
 var logfmt = require('logfmt');
 var courtbot = require('courtbot-engine');
-var Localize = require('localize');
 var connections = require('./connectionTypes');
 
 require('./config');
@@ -49,8 +48,6 @@ if(process.env.LOGENTRIES_TOKEN) {
 log4js.configure({appenders});
 
 const log = log4js.getLogger("courtbot");
-
-var localize = Localize("./strings");
 
 var app = express();
 
