@@ -10,6 +10,6 @@ Scenario: As a self-service user I should be asked for the party when multiple o
   """
   We found a case for multiple parties, please specify which party you are by entering the number shown:
 
-  1 - KENDRICKS, TEON1
+  1 - KENDRICKS, TEON
   2 - ODELL, TIFFANY
   """
