@@ -11,7 +11,10 @@ var connections = require('./connectionTypes');
 
 require('./config');
 require("courtbot-engine-pg");
-require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.com");
+require("courtbot-engine-data-oscn")(
+  process.env.OSCN_COUNTY || "tulsa",
+  process.env.OSCN_API_URL || "https://oscn-case-api.herokuapp.com"
+);
 require("courtbot-engine-data-courtbook")({
     courtbookUrl: process.env.COURTBOOK_URL,
     oauthConfig: {

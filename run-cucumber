@@ -7,6 +7,7 @@ if [ $# -eq 0 ]
     echo "Running in travis mode..."
 fi
 [ -f .env ] && mv .env .env.old || echo Skipping .env backup
+echo "OSCN_API_URL=http://localhost:5050" >> .env
 echo "COOKIE_SECRET=insert-random-string" >> .env
 echo "TWILIO_ACCOUNT_SID=add-twilio-sid-here" >> .env
 echo "TWILIO_AUTH_TOKEN=add-auth-token-here" >> .env
