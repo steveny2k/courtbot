@@ -1,2 +1,0 @@
-
-  Hello from CourtBot! We found a case for multiple parties, please specify which party you are by entering the number shown:

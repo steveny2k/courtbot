@@ -48,6 +48,11 @@ heroku config:set QUEUE_TTL_DAYS=<# days to keep a citation on the search queue>
 heroku config:set COURTBOT_TITLE=<name for courtbot>
 heroku config:set REMINDER_DAYS_OUT=<number of days out to remind users (typically 1)>
 heroku config:set API_TOKENS=["key1", "key2"]
+heroku config:set COURTBOOK_URL=<courtbook url>
+heroku config:set COURTBOOK_OAUTH_SECRET=<courtbook oauth secret>
+heroku config:set COURTBOOK_OAUTH_CLIENT_ID=<courtbook oauth client id>
+heroku config:set COURTBOOK_OAUTH_AUDIENCE=<courtbook oauth audience>
+heroku config:set COURTBOOK_OAUTH_TOKEN_URL=<courtbook oauth token url>
 git push heroku master
 heroku open
 ```

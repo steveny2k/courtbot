@@ -7,18 +7,28 @@ var log4js = require("log4js");
 
 var logfmt = require('logfmt');
 var courtbot = require('courtbot-engine');
-var Localize = require('localize');
 var connections = require('./connectionTypes');
-require("courtbot-engine-pg");
-require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.com");
-require("courtbot-engine-data-courtbook")("http://agile-tundra-30598.herokuapp.com/rest");
+
 require('./config');
-require("./messageSource");
+require("courtbot-engine-pg");
+require("courtbot-engine-data-oscn")(
+  process.env.OSCN_COUNTY || "tulsa",
+  process.env.OSCN_API_URL || "https://oscn-case-api.herokuapp.com"
+);
+require("courtbot-engine-data-courtbook")({
+    courtbookUrl: process.env.COURTBOOK_URL,
+    oauthConfig: {
+        tokenUrl: process.env.COURTBOOK_OAUTH_TOKEN_URL,
+        audience: process.env.COURTBOOK_OAUTH_AUDIENCE,
+        clientId: process.env.COURTBOOK_OAUTH_CLIENT_ID,
+        clientSecret: process.env.COURTBOOK_OAUTH_SECRET
+    }
+});
 
 var appenders = [
   {
     "type": "logLevelFilter",
-    "level": "DEBUG",
+    "level": "TRACE",
     "appender": {
       "type": "console"
     }
@@ -41,8 +51,6 @@ if(process.env.LOGENTRIES_TOKEN) {
 log4js.configure({appenders});
 
 const log = log4js.getLogger("courtbot");
-
-var localize = Localize("./strings");
 
 var app = express();
 
