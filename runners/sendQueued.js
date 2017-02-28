@@ -17,7 +17,8 @@ var options = {
   dbUrl: process.env.DATABASE_URL,
   twilioAccount: process.env.TWILIO_ACCOUNT,
   twilioToken: process.env.TWILIO_AUTH_TOKEN,
-  twilioPhone: process.env.TWILIO_PHONE_NUMBER
+  twilioPhone: process.env.TWILIO_PHONE_NUMBER,
+  reminderDaysOut: process.env.REMINDER_DAYS_OUT
 }
 connections.setup(options)
 courtbot.checkMissingCases(options);
