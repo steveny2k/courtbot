@@ -18,7 +18,7 @@ var options = {
   twilioToken: process.env.TWILIO_AUTH_TOKEN,
   twilioPhone: process.env.TWILIO_PHONE_NUMBER,
   reminderDaysOut: process.env.REMINDER_DAYS_OUT,
-  timeZone: 6
+  timeZone: -6
 }
 connections.setup(options)
 courtbot.sendDueReminders(options);

@@ -98,7 +98,7 @@ const courtbotConfig = {
   twilioAccount: process.env.TWILIO_ACCOUNT,
   twilioToken: process.env.TWILIO_AUTH_TOKEN,
   twilioPhone: process.env.TWILIO_PHONE_NUMBER,
-  timeZone: 6
+  timeZone: -6
 };
 
 connections.setup(courtbotConfig);
