@@ -20,22 +20,24 @@ defineSupportCode(function({Before, After}) {
   });
 });
 
-export function MockCase(caseNumber, partyNames) {
-  serviceApp.get(`/oscn/case/tulsa/${caseNumber}`, function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ defendants: partyNames.map(function(r) { return ({ name: r }); }) }));
-  });
-}
+module.exports = exports = {
+  MockCase: function(caseNumber, partyNames) {
+    serviceApp.get(`/oscn/case/tulsa/${caseNumber}`, function(req, res) {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ defendants: partyNames.map(function(r) { return ({ name: r }); }) }));
+    });
+  },
 
-export function MockEvents(caseNumber, partyName, events) {
-  serviceApp.get(`/oscn/case/tulsa/${caseNumber}/${partyName}`, function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify([{events}]));
-  });
-}
+  MockEvents: function(caseNumber, partyName, events) {
+    serviceApp.get(`/oscn/case/tulsa/${caseNumber}/${partyName}`, function(req, res) {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify([{events}]));
+    });
+  },
 
-export function ExpectTwilio(number, sid, fn) {
-  serviceApp.post(`/twilio/2010-04-01/Accounts/${sid}/Messages.json`, function(req, res) {
-    fn(res.body);
-  });
+  ExpectTwilio: function(number, sid, fn) {
+    serviceApp.post(`/twilio/2010-04-01/Accounts/${sid}/Messages.json`, function(req, res) {
+      fn(res.body);
+    });
+  }
 }

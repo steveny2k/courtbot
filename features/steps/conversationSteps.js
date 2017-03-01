@@ -11,7 +11,7 @@ var chance = Chance();
 
 defineSupportCode(function({Given, Then, When, Before, After}) {
   Given('A case exists with multiple parties with case number {arg1:stringInDoubleQuotes} and the following parties:', function (arg1, table, callback) {
-    MockCase(caseNumber, table.rows().map(r => r[0]));
+    MockCase(arg1, table.rows().map(r => r[0]));
     this.caseNumber = arg1;
     callback();
   });
