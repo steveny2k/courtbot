@@ -4,17 +4,14 @@ var Chance = require('chance');
 var cProc = require("child_process");
 var chai = require("chai");
 var xml2js = require("xml2js");
-
 var expect = chai.expect;
+var {MockCase} = require("../helpers/fakeService");
 
 var chance = Chance();
 
 defineSupportCode(function({Given, Then, When, Before, After}) {
   Given('A case exists with multiple parties with case number {arg1:stringInDoubleQuotes} and the following parties:', function (arg1, table, callback) {
-    this.fakeServiceApp.get(`/case/tulsa/${arg1}`, function(req, res) {
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify({ defendants: table.rows().map(function(r) { return ({ name: r[0] }); }) }));
-    });
+    MockCase(arg1, table.rows().map(r => r[0]));
     this.caseNumber = arg1;
     callback();
   });
