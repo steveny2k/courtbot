@@ -30,7 +30,7 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
         console.dir(result);
         world.courtbotResponse = result.Response.Sms[0];
         console.dir(body);
-        callback();
+        setTimeout(callback, 1000);
       });
     });
   });
@@ -49,7 +49,7 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
         console.dir(result);
         world.courtbotResponse = result.Response.Sms[0];
         console.dir(body);
-        callback();
+        setTimeout(callback, 1000);
       });
     });
   });
@@ -67,7 +67,7 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
         console.dir(result);
         world.courtbotResponse = result.Response.Sms[0];
         console.dir(body);
-        callback();
+        setTimeout(callback, 1000);
       });
     });
   });

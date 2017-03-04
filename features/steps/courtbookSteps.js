@@ -36,7 +36,7 @@ defineSupportCode(function({Given, Then, When}) {
       var obj = JSON.parse(body);
       expect(obj.verifiedContact).to.equal(world.verifiedContact);
       world.phoneNumber = world.verifiedContact;
-      callback();
+      setTimeout(callback, 1000);
     });
   });
 
