@@ -41,8 +41,14 @@ defineSupportCode(function({Given, Then, When}) {
   });
 
   Then('Courtbot sends the contact the following message to the validated phone number:', function (string, callback) {
-    expect(this.twilioSms.To).to.equal(this.verifiedContact);
-    expect(this.twilioSms.Body).to.equal(string.replace("<user>", this.user).replace("<case>", this.caseNumber).replace("<party>", this.party));
+    if(this.verifiedContact) expect(this.twilioSms.To).to.equal(this.verifiedContact);
+    expect(this.twilioSms.Body).to.equal(string
+      .replace("<user>", this.user)
+      .replace("<case>", this.caseNumber)
+      .replace("<party>", this.party)
+      .replace("<eventDate>", this.eventDate)
+      .replace("<eventDescription>", this.eventDescription));
+    delete this.twilioSms;
     callback();
   });
 });

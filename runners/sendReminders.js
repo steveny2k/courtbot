@@ -1,8 +1,11 @@
 var courtbot = require('courtbot-engine');
 var connections = require('../connectionTypes')
 require("courtbot-engine-pg");
-require("courtbot-engine-data-oscn")("tulsa", "https://oscn-case-api.herokuapp.com");
 require('../config');
+require("courtbot-engine-data-oscn")(
+  process.env.OSCN_COUNTY || "tulsa",
+  process.env.OSCN_API_URL || "https://oscn-case-api.herokuapp.com"
+);
 require("courtbot-engine-data-courtbook")({
     courtbookUrl: process.env.COURTBOOK_URL,
     oauthConfig: {
@@ -21,4 +24,6 @@ var options = {
   timeZone: -6
 }
 connections.setup(options)
-courtbot.sendDueReminders(options);
+courtbot.sendDueReminders(options)
+  .then(() => process.exit(0))
+  .catch(() => process.exit(1));

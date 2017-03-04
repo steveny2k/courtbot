@@ -74,6 +74,7 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
 
   Then('courtbot responds with the following text:', function (string, callback) {
     expect(this.courtbotResponse.trim()).to.equal(string.replace("RANDOM TEXT", this.randomText).trim());
+    delete this.twilioSms;
     callback();
   });
 });

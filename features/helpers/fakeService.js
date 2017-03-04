@@ -4,6 +4,7 @@ var {defineSupportCode} = require('cucumber');
 
 var serviceApp;
 var phoneVerification;
+var registeredEvents;
 
 defineSupportCode(function({Before, After}) {
   Before(function() {
@@ -35,6 +36,18 @@ defineSupportCode(function({Before, After}) {
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({phone_number: world.phoneVerification[req.params.phone](req.params.phone)}));
     });
+
+    registeredEvents = {};
+
+    serviceApp.get(`/oscn/case/tulsa/:caseNumber/:partyName`, function(req, res) {
+      console.log(`Getting case for ${req.params.partyName} and number ${req.params.caseNumber}`);
+      res.setHeader('Content-Type', 'application/json');
+      if(!registeredEvents[req.params.caseNumber] || !registeredEvents[req.params.caseNumber][req.params.partyName]) {
+          res.end(JSON.stringify([{events: []}]));
+          return;
+      }
+      res.end(JSON.stringify([{events: registeredEvents[req.params.caseNumber][req.params.partyName]}]));
+    });
   });
 
   After(function() {
@@ -51,10 +64,8 @@ module.exports = exports = {
   },
 
   MockEvents: function(caseNumber, partyName, events) {
-    serviceApp.get(`/oscn/case/tulsa/${caseNumber}/${partyName}`, function(req, res) {
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify([{events}]));
-    });
+    registeredEvents[caseNumber] = registeredEvents[caseNumber] || {}
+    registeredEvents[caseNumber][partyName] = events;
   },
 
   MockPhoneLookup: function(phoneNumber, fn, world) {
