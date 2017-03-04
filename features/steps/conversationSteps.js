@@ -16,6 +16,12 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
     callback();
   });
 
+  Given('no case exists for the case number', function (callback) {
+    //noop
+    this.caseNumber = chance.guid();
+    callback();
+  });
+
   When('I send courtbot a text with the name of that case', function (callback) {
     var world = this;
     this.phoneNumber = chance.phone();
@@ -30,7 +36,7 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
         console.dir(result);
         world.courtbotResponse = result.Response.Sms[0];
         console.dir(body);
-        setTimeout(callback, 1000);
+        setTimeout(callback, 150);
       });
     });
   });
@@ -49,7 +55,7 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
         console.dir(result);
         world.courtbotResponse = result.Response.Sms[0];
         console.dir(body);
-        setTimeout(callback, 1000);
+        setTimeout(callback, 150);
       });
     });
   });
@@ -67,7 +73,7 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
         console.dir(result);
         world.courtbotResponse = result.Response.Sms[0];
         console.dir(body);
-        setTimeout(callback, 1000);
+        setTimeout(callback, 150);
       });
     });
   });
