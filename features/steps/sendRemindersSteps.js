@@ -21,7 +21,7 @@ defineSupportCode(function({Given, Then, When}) {
 
     MockCase(this.caseNumber, [this.party]);
     MockEvents(this.caseNumber, this.party, [{
-      date: evt.format("dddd, MMMM D, YYYY h:mm A"),
+      date: evt.format(),
       description: this.eventDescription
     }]);
 
