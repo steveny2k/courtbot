@@ -17,7 +17,7 @@ defineSupportCode(function({Given, Then, When}) {
     this.party = `${chance.last()}, ${chance.first()}`;
     this.eventDescription = chance.paragraph();
     var evt = moment().add(arg1, "hours");
-    this.eventDate = evt.format("MMMM D, YYYY h:mm A");
+    this.eventDate = evt.utcOffset(-6).format("MMMM D, YYYY h:mm A");
 
     MockCase(this.caseNumber, [this.party]);
     MockEvents(this.caseNumber, this.party, [{
