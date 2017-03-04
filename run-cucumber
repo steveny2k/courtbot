@@ -29,7 +29,7 @@ cat .env
 psql -c "CREATE DATABASE courtbotat" -h localhost -U postgres
 node web.js &
 sleep 5
-./node_modules/.bin/cucumber-js
+./node_modules/.bin/cucumber-js -f json:cucumber_report.json
 pkill node
 rm .env
 psql -c "DROP DATABASE courtbotat" -h localhost -U postgres
