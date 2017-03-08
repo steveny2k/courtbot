@@ -16,6 +16,12 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
     callback();
   });
 
+  Given('no case exists for the case number', function (callback) {
+    //noop
+    this.caseNumber = chance.guid();
+    callback();
+  });
+
   When('I send courtbot a text with the name of that case', function (callback) {
     var world = this;
     this.phoneNumber = chance.phone();
@@ -30,7 +36,7 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
         console.dir(result);
         world.courtbotResponse = result.Response.Sms[0];
         console.dir(body);
-        callback();
+        setTimeout(callback, 150);
       });
     });
   });
@@ -49,13 +55,32 @@ defineSupportCode(function({Given, Then, When, Before, After}) {
         console.dir(result);
         world.courtbotResponse = result.Response.Sms[0];
         console.dir(body);
-        callback();
+        setTimeout(callback, 150);
+      });
+    });
+  });
+
+  When('I send courtbot the text {arg1:stringInDoubleQuotes} in response to its message', function (arg1, callback) {
+    var world = this;
+    //hit courtbot's sms endpoint and send the case information
+    request.post("http://localhost:5000/sms", {
+      form: {
+        Body: arg1,
+        From: this.phoneNumber
+      }
+    }, function(error, response, body) {
+      xml2js.parseString(body, function(err, result) {
+        console.dir(result);
+        world.courtbotResponse = result.Response.Sms[0];
+        console.dir(body);
+        setTimeout(callback, 150);
       });
     });
   });
 
   Then('courtbot responds with the following text:', function (string, callback) {
     expect(this.courtbotResponse.trim()).to.equal(string.replace("RANDOM TEXT", this.randomText).trim());
+    delete this.twilioSms;
     callback();
   });
 });

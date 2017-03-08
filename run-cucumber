@@ -10,7 +10,8 @@ fi
 echo "OSCN_API_URL=http://localhost:5050/oscn" >> .env
 echo "COOKIE_SECRET=insert-random-string" >> .env
 echo "TWILIO_API_HOST=http://localhost:5050/twilio" >> .env
-echo "TWILIO_ACCOUNT_SID=TWILIOSID" >> .env
+echo "TWILIO_LOOKUPS_HOST=http://localhost:5050/twilioLookups" >> .env
+echo "TWILIO_ACCOUNT=TWILIOSID" >> .env
 echo "TWILIO_AUTH_TOKEN=TWILIOTOKEN" >> .env
 echo "TWILIO_PHONE_NUMBER=+15555555555" >> .env
 echo "DATABASE_URL=postgres://postgres:$PGPASSWORD@localhost:5432/courtbotat" >> .env
@@ -23,12 +24,12 @@ echo "COURTBOOK_OAUTH_SECRET=oauth_secret" >> .env
 echo "COURTBOOK_OAUTH_CLIENT_ID=oauth_client_id" >> .env
 echo "COURTBOOK_OAUTH_AUDIENCE=oauth_audience" >> .env
 echo "COURTBOOK_OAUTH_TOKEN_URL=oauth_token_url" >> .env
-echo "API_TOKENS='["TOKEN1", "TOKEN2"]'" >> .env
+echo "API_TOKENS=[\"TOKEN1\", \"TOKEN2\"]" >> .env
 cat .env
 psql -c "CREATE DATABASE courtbotat" -h localhost -U postgres
 node web.js &
 sleep 5
-./node_modules/.bin/cucumber-js
+./node_modules/.bin/cucumber-js -f json:cucumber_report.json
 pkill node
 rm .env
 psql -c "DROP DATABASE courtbotat" -h localhost -U postgres

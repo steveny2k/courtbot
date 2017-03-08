@@ -7,3 +7,5 @@ TODO
 .idea
 npm-debug.log*
 .nyc_output/*
+cucumber_report.json
+cucumber_report.html
