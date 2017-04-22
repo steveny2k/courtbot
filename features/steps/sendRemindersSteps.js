@@ -8,7 +8,7 @@ var expect = chai.expect;
 var {MockCase, MockEvents} = require("../helpers/fakeService");
 var pg = require("pg");
 var chance = Chance();
-var moment = require("moment");
+var moment = require("moment-timezone");
 var proc = require("child_process");
 
 defineSupportCode(function({Given, Then, When}) {
@@ -17,7 +17,7 @@ defineSupportCode(function({Given, Then, When}) {
     this.party = `${chance.last()}, ${chance.first()}`;
     this.eventDescription = chance.paragraph();
     var evt = moment().add(arg1, "hours");
-    this.eventDate = evt.utcOffset(-6).format("MMMM D, YYYY h:mm A");
+    this.eventDate = evt.tz("America/Chicago").format("MMMM D, YYYY h:mm A");
 
     MockCase(this.caseNumber, [this.party]);
     MockEvents(this.caseNumber, this.party, [{
@@ -38,6 +38,8 @@ defineSupportCode(function({Given, Then, When}) {
         console.error("Error registering:", err);
       }
       expect(!!err).to.equal(false);
+
+      world.phoneNumber = world.phoneNumber || chance.phone();
 
       var registration = {
         contact: world.phoneNumber,
@@ -73,6 +75,7 @@ defineSupportCode(function({Given, Then, When}) {
   });
   Then('Courtbot does not send a message', function (callback) {
     expect(this.twilioSms).to.be.undefined;
+    delete this.twilioSms;
     callback();
   });
 });
