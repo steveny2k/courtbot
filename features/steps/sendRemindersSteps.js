@@ -39,6 +39,8 @@ defineSupportCode(function({Given, Then, When}) {
       }
       expect(!!err).to.equal(false);
 
+      world.phoneNumber = world.phoneNumber || chance.phone();
+
       var registration = {
         contact: world.phoneNumber,
         communication_type: "sms",
@@ -73,6 +75,7 @@ defineSupportCode(function({Given, Then, When}) {
   });
   Then('Courtbot does not send a message', function (callback) {
     expect(this.twilioSms).to.be.undefined;
+    delete this.twilioSms;
     callback();
   });
 });
