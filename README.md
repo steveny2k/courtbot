@@ -53,6 +53,7 @@ heroku config:set COURTBOOK_OAUTH_SECRET=<courtbook oauth secret>
 heroku config:set COURTBOOK_OAUTH_CLIENT_ID=<courtbook oauth client id>
 heroku config:set COURTBOOK_OAUTH_AUDIENCE=<courtbook oauth audience>
 heroku config:set COURTBOOK_OAUTH_TOKEN_URL=<courtbook oauth token url>
+heroku config:set OSCN_COUNTY=<county in oklahoma to pull case data from>
 git push heroku master
 heroku open
 ```
