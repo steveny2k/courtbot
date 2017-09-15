@@ -40,9 +40,9 @@ heroku create <app name>
 heroku addons:add heroku-postgresql
 heroku addons:add scheduler
 heroku config:set COOKIE_SECRET=<random string>
-heroku config:set TWILIO_ACCOUNT=<twilio account>
+heroku config:set TWILIO_ACCOUNT=<twilio account SID>
 heroku config:set TWILIO_AUTH_TOKEN=<twilio auth token>
-heroku config:set TWILIO_PHONE_NUMBER=<twilio phone number>
+heroku config:set TWILIO_PHONE_NUMBER=<your twilio phone number>
 heroku config:set COURT_PUBLIC_URL=<where to send people for more info>
 heroku config:set QUEUE_TTL_DAYS=<# days to keep a citation on the search queue>
 heroku config:set COURTBOT_TITLE=<name for courtbot>
