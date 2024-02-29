@@ -2,7 +2,7 @@ repo_name: steveny2k/courtbot
 report_id: fd19278eddd889c02c8a3ebed9eb205c
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-05T08:55:13+00:00'
+timestamp: '2024-02-29T18:34:42+00:00'
 requested_by: pipakin
 provider: github
 branch: master
@@ -188,7 +188,7 @@ tools:
   last_updated_by: Stephen Bussey
   last_updated_on: 2015-07-01 01:23:22.000000000 Z
 - name: SuperTest
-  description: 'A library for testing node.js HTTP servers '
+  description: A library for testing node.js HTTP servers
   website_url: https://www.npmjs.com/package/supertest
   version: 0.15.0
   license: MIT
